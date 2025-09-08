@@ -1,6 +1,7 @@
-import { supabase } from '@/src/lib/supabase'
+﻿import { supabase } from "./supabase";
 
 export async function getSession() {
-  const { data } = await supabase.auth.getSession()
-  return data.session ?? null
+  const { data, error } = await supabase.auth.getSession();
+  if (error) throw error;
+  return data.session;
 }
