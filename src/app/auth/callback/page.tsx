@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
@@ -7,20 +7,14 @@ export default function AuthCallback() {
   const router = useRouter();
 
   useEffect(() => {
-    const run = async () => {
+    (async () => {
       try {
-        const url = new URL(window.location.href);
-        const code = url.searchParams.get("code");
-        if (code) {
-          await supabase.auth.exchangeCodeForSession(code);
-        }
-      } catch { /* ignore */ }
-      finally {
-        router.replace("/");
+        await supabase.auth.exchangeCodeForSession(window.location.href);
+      } finally {
+        router.replace("/dashboard");
       }
-    };
-    run();
+    })();
   }, [router]);
 
-  return null;
+  return <main className="p-6">Signing you in…</main>;
 }
