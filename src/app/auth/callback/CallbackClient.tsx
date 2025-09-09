@@ -17,7 +17,7 @@ export default function CallbackClient() {
         if (code) {
           await supabase.auth.exchangeCodeForSession(code);
         } else {
-          // Magic Link の #access_token=... は SDK(detectSessionInUrl:true) が処理
+          // Magic Link の #access_token=... は SDK が処理（detectSessionInUrl: true）
           await supabase.auth.getSession();
         }
       } catch (e) {
