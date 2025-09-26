@@ -27,7 +27,4 @@ jobs:
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
     - name: Run tests
-      run: |
-        cd githubaction
-        pytest -v  # もしくは特定のPythonスクリプトを実行する場合: python test_script.py
-
+      run: pytest -v   # テストが tests/ フォルダにある場合は: pytest -v tests/
